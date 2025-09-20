@@ -14,6 +14,7 @@ var yesNoSchema = {
         }
     }
 };
+
 //custom schema for the prompt node
 var schema = {
     properties :{
@@ -44,18 +45,26 @@ var bigBangTheorySchema = {
     }
 };
 
-
 //starts the prompt module
 prompt.start();
 
 //Outputs to the 
 console.log("Welcome to Rock, Papper, Scissors!");
+console.log("Game will shutdown with invalid entries at set prompts");
 
-//Prompt to get the user information
-prompt.get(schema,function (err,res){
-    gameType = res.value.toLocaleLowerCase();
-    mainDes(res.value.toLocaleLowerCase());
-});
+//Places the main prompt in a function that is called at the end.
+function gameTypeSelection(){
+    //Prompt to get the user information
+    prompt.get(schema,function (err,res){
+        if(res.value.toLocaleLowerCase() !== 'reg' || res.value.toLocaleLowerCase() !== 'bbt'){
+            gameType = res.value.toLocaleLowerCase();
+            mainDes(res.value.toLocaleLowerCase());
+        }
+        else {
+            console.log("Invalid Input. Shutting down game.");
+        }
+    });
+}
 
 //Starts up the game for regular game
 function startGameReg(userInput){
@@ -77,6 +86,9 @@ function startGameReg(userInput){
             case "scissors":
                 console.log("you win!");
                 break;
+            default:
+                console.log("Invalid entry. Try again");
+                break;
         }
     }
     //if the random number is between 0.34 and 0.67
@@ -95,6 +107,9 @@ function startGameReg(userInput){
             case "scissors":
                 console.log("Tie!");
                 break;
+            default:
+                console.log("Invalid entry. Try again");
+                break;
         }
     }
     //if the random number is between 0.67 and 1
@@ -112,6 +127,9 @@ function startGameReg(userInput){
                 break;
             case "scissors":
                 console.log("you lose!");
+                break;
+            default:
+                console.log("Invalid entry. Try again");
                 break;
         }
     }    
@@ -150,6 +168,9 @@ function startGameBBT(userInput){
             case "spock" :
                 console.log("Paper disproves Spock. You lose!");
                 break;
+            default:
+                console.log("Invalid entry. Try again");
+                break;
         }
     }
     //if the random number is between 0.2 and 0.4
@@ -173,6 +194,9 @@ function startGameBBT(userInput){
                 break;
             case "spock" :
                 console.log("Spock smashes Scissors. You Win!");
+                break;
+            default:
+                console.log("Invalid entry. Try again");
                 break;
         }
     }
@@ -198,6 +222,9 @@ function startGameBBT(userInput){
             case "spock" :
                 console.log("Spock vapourizes Rock. You Win!");
                 break;
+            default:
+                console.log("Invalid entry. Try again");
+                break;
         }
     }   
     //if the random number is between 0.6 and 0.8
@@ -221,6 +248,9 @@ function startGameBBT(userInput){
                 break;
             case "spock" :
                 console.log("Lizard poisons Spock. You lose!");
+                break;
+            default:
+                console.log("Invalid entry. Try again");
                 break;
         }
     }  
@@ -246,6 +276,9 @@ function startGameBBT(userInput){
             case "spock" :
                 console.log("Tie!");
                 break;
+            default:
+                console.log("Invalid entry. Try again");
+                break;
         }
     }  
 
@@ -257,6 +290,7 @@ function startGameBBT(userInput){
     });
 }
 
+//Desides what game is to be played
 function mainDes(inputValue){
 //makes sure if the user is quiting the game or not
 
@@ -280,3 +314,6 @@ function mainDes(inputValue){
         console.log("Quitting game");
     }
 }
+
+//starts the game
+gameTypeSelection();
