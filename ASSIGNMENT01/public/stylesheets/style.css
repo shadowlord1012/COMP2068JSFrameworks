@@ -1,15 +1,141 @@
 body {
-  padding: 50px;
   font: 14px "Lucida Grande", Helvetica, Arial, sans-serif;
 }
 
-#headerNav a {
-  color: #00B7FF;
-  text-decoration: none;
-  padding: 5px 5px;
-  border-right: 2px solid #00b700;
+header,footer {
+  position: fixed;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+  height: 125px;
+  width: 100%;
+  background-image: linear-gradient(to bottom, #115250, #021929);
 }
 
-#headerNav a:last-child {
+header menu {
+  display: grid;
+  grid-template-columns: repeat(3,1fr);
+  align-content: center;
+  align-items: center;
+  justify-content: center;
+  height: 100%;
+  width: auto;
+}
+
+header menu li{
+  list-style: none;
+  height: 100%;
+  width: auto;
+  padding: 0px 50px;
+  border-right: solid 2px #fefefe;
+}
+
+header menu li:last-child{
   border-right: none;
 }
+
+header menu li a, header menu li p{
+  text-decoration: none;
+  font-size: 2em;
+  color: #fffffb;
+}
+
+header div {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 0px 20px;
+}
+
+header div img{
+  height: 120px;
+  width: auto;
+}
+
+footer{
+  bottom: 0;
+  left:0;
+}
+
+footer menu {
+  display: grid;
+  grid-template-columns: 100%;
+  grid-template-rows: auto;
+  align-content: center;
+  align-items: center;
+  justify-content: center;
+  height: 100%;
+  width: auto;
+}
+
+footer menu li {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  list-style: none;
+  height: 100%;
+  width: auto;
+  padding: 2px 50px;
+}
+
+footer menu li img{
+  padding-right: 5px;
+  height: 25px;
+  width: auto;
+}
+
+footer div {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 0px 20px;
+}
+
+footer div img{
+  height: 120px;
+  width: auto;
+}
+footer menu li a, footer menu li p{
+  text-decoration: none;
+  font-size: 1.2em;
+  color: #fffffb;
+}
+
+main{
+  padding: 125px 10px 10px 10px;
+}
+
+#Guild {
+  display: grid;
+  grid-template-columns: 50% 50%;
+  grid-template-rows: auto;
+  justify-items: left;
+  height: 30px;
+  width: auto;
+}
+
+#Guild p{
+  padding: 5px 0px;
+  text-decoration: none;
+  font-size: 1.2em;
+  color: #115250;
+}
+
+#revealedText{
+  display: none;
+}
+
+#followingMouse{  
+  position: absolute;
+  left: 300px;
+  width: auto;
+  height: 25px;
+}
+
+#followingMouse img{
+  width: auto;
+  height: 25px;
+}
+
+

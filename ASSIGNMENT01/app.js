@@ -10,7 +10,7 @@ var contactRouter = require('./routes/contact');
 var aboutRouter = require('./routes/about');
 var projectsRouter = require('./routes/projects');
 var githubRouter = require('./routes/github');
-var linkedInRouter = require('./routes/linkedIn');
+var linkedInRouter = require('./routes/linkedIn.js');
 
 var app = express();
 

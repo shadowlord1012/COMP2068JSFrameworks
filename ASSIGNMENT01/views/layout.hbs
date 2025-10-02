@@ -1,22 +1,54 @@
 <!DOCTYPE html>
 <html>
   <head>
-    <title>{{title}}</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="robots" contecnt="noindex, nofollow"> 
+    <link rel="stylesheet" href="/stylesheets/reset.css"/>
     <link rel='stylesheet' href='/stylesheets/style.css' />
-    <nav id="headerNav">
-      <a href="/">Home</a>
-      <a href="/about">About Me</a>
-      <a href="/projects">My Projects</a>
-      <a href="/contact">Contact Me</a>
-    </nav>
+    <!-- jqueryScripts needed to run some of the js that is custom -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <!-- Custom script for all the pages once they are loaded -->
+    <script src="/javascripts/js_All_Pages.js" defer></script> 
   </head>
-  <body>
+  <header>
+    <menu>
+      <li><a href="/">Home</a></li>
+      <li><a href="/about">About Me</a></li>
+    </menu>
+    <div>
+      <img src="/images/logo.png" alt="Unkown logo">
+    </div>
+    <menu>
+      <li><a href="/projects">My Projects</a></li>
+      <li><a href="/contact">Contact Me</a></li>
+    </menu>
+  </header>
+  <body>  
+    <main>
+    <title>{{title}}</title>
+    <section id="Guild">     
+      <p>Lets go on alittle Adventure... Click me</p>
+      <div id="followingMouse">
+          <img src="/images/testImage.png" alt="character With torch">
+      </div>
+    </section>
     {{{body}}}
+    </main>    
   </body>
   <footer>
-    <nav>
-      <a href="/github">GitHub Projects</a>
-      <a href="/LinkedIn">LinkedIn </a>
-    </nav>
+    <menu>
+      <li>
+        <img src="/images/githublogo.png" alt="Github logo">
+        <a href="/github">GitHub Projects</a>
+      </li>
+      <li>
+        <img src="/images/linkedinlogo.png" alt="Github logo"> 
+        <a href="/LinkedIn">LinkedIn </a>     
+      </li>
+    </menu>
+    <div>
+      <img src="/images/logo.png">
+    </div>
   </footer>
 </html>
