@@ -10,7 +10,8 @@ var contactRouter = require('./routes/contact');
 var aboutRouter = require('./routes/about');
 var projectsRouter = require('./routes/projects');
 var githubRouter = require('./routes/github');
-var linkedInRouter = require('./routes/linkedIn.js');
+var linkedInRouter = require('./routes/linkedIn');
+var updatesRouter = require('./routes/updates');
 
 var app = express();
 
@@ -31,6 +32,7 @@ app.use('/contact', contactRouter);
 app.use('/projects', projectsRouter);
 app.use('/github', githubRouter);
 app.use('/linkedIn', linkedInRouter);
+//app.use('/updates',updatesRouter);
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {

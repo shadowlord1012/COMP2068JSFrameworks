@@ -1,5 +1,6 @@
 body {
   font: 14px "Lucida Grande", Helvetica, Arial, sans-serif;
+  background-color: #a4add3;
 }
 
 header,footer {
@@ -96,6 +97,18 @@ footer div img{
   height: 120px;
   width: auto;
 }
+
+#Disclaimer{
+  width: 350px;
+  height: 100%;
+}
+
+#Disclaimer p{
+  text-decoration: none;
+  font-size: 1.2em;
+  color: #fffffb;
+}
+
 footer menu li a, footer menu li p{
   text-decoration: none;
   font-size: 1.2em;
@@ -122,6 +135,11 @@ main{
   color: #115250;
 }
 
+#hoverArea{
+  width: 275px;
+  height: 100%;
+}
+
 #revealedText{
   display: none;
 }
@@ -138,4 +156,36 @@ main{
   height: 25px;
 }
 
+#projectDiv {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  height: 500px;
+}
 
+#projectDiv p{
+  text-decoration: none;
+  text-indent: 40px;
+  font-size: 1.75em;
+  color: #434656;
+  padding: 5px 0px;
+}
+
+#projectImage{
+  height: 80%;
+  width: auto;
+}
+
+#gameVideo{
+  align-items: center;
+  width: auto;
+  height: 100%;
+}
+
+#gameVideo video {
+  height: 400px;
+  width: auto;
+  padding-top: 60px;
+}

@@ -7,3 +7,5 @@ router.get('/',function(req,res,next) {
 });
 
 module.exports = router;
+/* there will be updates on this page dealing with the contact information that is on the portfoilo. 
+ */
