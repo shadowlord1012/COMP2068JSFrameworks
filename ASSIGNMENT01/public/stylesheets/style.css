@@ -3,6 +3,12 @@ body {
   background-color: #a4add3;
 }
 
+h3{
+  text-decoration: none;
+  font-size: 3em;
+  color: #434656;
+  padding: 5px 0px;
+}
 header,footer {
   position: fixed;
   display: flex;
@@ -140,9 +146,6 @@ main{
   height: 100%;
 }
 
-#revealedText{
-  display: none;
-}
 
 #followingMouse{  
   position: absolute;
@@ -165,7 +168,8 @@ main{
   height: 500px;
 }
 
-#projectDiv p{
+#projectDiv p, #indexPage p, #aboutTextTwo, #aboutImageAndText div p,
+#ContactPage p{
   text-decoration: none;
   text-indent: 40px;
   font-size: 1.75em;
@@ -188,4 +192,80 @@ main{
   height: 400px;
   width: auto;
   padding-top: 60px;
+}
+
+#indexPage{
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  height: 100%;
+  width: auto;
+}
+
+#indexPage div{
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  height: 100%;
+  width: auto;
+}
+#indexPage div img{
+  height: 300px;
+  width: auto;
+}
+#indexPage img{
+  padding-top: 25px;
+  padding-left: 25px;
+}
+
+#aboutImageAndText {
+  display: flex;
+  flex-direction: row;
+  justify-content: left;
+  align-items: center;
+  height: 100%;
+  width: auto;
+}
+
+#aboutImageAndText img{
+  height: 600px;
+  width: auto;
+}
+
+#aboutImageAndText div {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  height: 100%;
+  width: auto;
+  padding-left: 50px;
+}
+
+#ContactPage{
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  height: 100%;
+  width: auto;
+  padding: 20px 10px;
+}
+
+#ContactPage div{
+  padding: 0px 15px;
+}
+
+#ContactPage div:first-child img{
+  height: 500px;
+  width: auto;
+}
+
+#ContactPage div:nth-child(1){
+  display: flex;
+  flex-direction: column;
+  justify-content: left;
+  align-items: Left;
 }
