@@ -1,0 +1,29 @@
+
+<!-- Basic layout of the different Projects -->
+<table class="table table-hover">
+    <thead>
+        <th>Project ID</th>
+        <th>Project Name</th>
+        <th>Start Date</th>
+        <th>Estimate Finish Date</th>
+        <th>Current Status</th>
+    </thead>
+    <tbody>
+        {{#each projectSet}}
+        <tr>
+            <td><a href="/projects/details/{{this.id}}" class="btn btn-success">{{this.projectId}}</a></td>
+            <td>{{this.name}}</td>
+            <td>{{this.startDate}}</td>
+            <td>{{this.estimateDate}}</td>
+            <td>{{this.status}}</td>
+            <td>
+                {{#if ../user}}
+                <a href="/projects/edit/{{this.id}}" class="btn btn-info">Update</a>
+                &nbsp;
+                <a href="/projects/delete/{{this.id}}" class="btn btn-danger">Delete</a>
+                {{/if}}
+            </td>
+        </tr>
+        {{/each}}
+    </tbody>
+</table>
