@@ -1,4 +1,7 @@
-
+<h1>{{title}}</h1>
+&nbsp;
+<h2>All Projects</h2>
+<a href="/projects/add" class="btn btn-primary">New Project</a>
 <!-- Basic layout of the different Projects -->
 <table class="table table-hover">
     <thead>
@@ -11,7 +14,7 @@
     <tbody>
         {{#each projectSet}}
         <tr>
-            <td><a href="/projects/details/{{this.id}}" class="btn btn-success">{{this.projectId}}</a></td>
+            <td>{{this.projectId}}</a></td>
             <td>{{this.name}}</td>
             <td>{{this.startDate}}</td>
             <td>{{this.estimateDate}}</td>

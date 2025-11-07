@@ -1,0 +1,32 @@
+<h1>{{title}}</h1>
+&nbsp;
+<h2>All Projects</h2>
+<select id="projectSelect">
+    {{#each data}}
+        <option value="{{this.id}}" >{{this.name}}</option>
+    {{/each}}
+</select>
+<button 
+<!-- Basic layout of the different Projects -->
+<table class="table table-hover">
+    <thead>
+        <th>Project ID</th>
+        <th>Project Name</th>
+        <th>Current Cost</th>
+        <th>Current Billed</th>
+        <th>Budget</th>
+        <th>Over/Under</th>
+    </thead>
+    <tbody>
+        {{#each projectData}}
+        <tr class="table-{{this.statusCost}}">
+            <td><a href="/accounts/{{this.id}}" class="btn btn-success">{{this.projectId}}</a></td>
+            <td>{{this.name}}</td>
+            <td>{{this.cost}}</td>
+            <td>{{this.billed}}</td>
+            <td>{{this.budget}}</td>
+            <td>{{this.differ}}</td>
+        </tr>
+        {{/each}}
+    </tbody>
+</table>

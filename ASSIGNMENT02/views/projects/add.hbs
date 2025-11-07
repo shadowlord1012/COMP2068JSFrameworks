@@ -1,34 +1,33 @@
 <h1>{{title}}</h1>
+<!-- Basic form for adding in a new project Not the materials to the project
+ It will set up the very basic project and then set all the information to add in the 
+ ofmaterails that are used -->
 <form method="POST">
     <fieldset>
-        <form>
             <div class="form-row">
                 <div class="col-md-4 mb-3">
-                    <label for="projectID">Project ID Number</label>
-                    <input type="text" class="form-control" name="projectID" id="projectId" value="{{project.projectID}}" required>
+                    <label for="projectId">Project ID Number</label>
+                    <input type="text" class="form-control" name="projectId" id="projectId" required>
                 </div>
                 <div class="col-md-4 mb-3">
                     <label for="projectName">Project Name</label>
-                    <input type="text" class="form-control" name="projectName" id="projectName" value="{{project.name}}" required>
+                    <input type="text" class="form-control" name="projectName" id="projectName" required>
                 </div>
                 <div class="col-md-6 mb-3">
                     <label for="startDate">Start Date</label>
-                    <input type="date" name="startDate" id="startDate" value="{{project.startDate}}" required disabled>
+                    <input type="date" name="startDate" id="startDate"  required>
                 </div>
                 <div class="col-md-6 mb-3">
                     <label for="estimateDate">Estimate Time Of Finish</label>
-                    <input type="date" name="estimateDate" id="estimateDate" value="{{project.estimateDate}}">
+                    <input type="date" name="estimateDate" id="estimateDate" required>
                 </div>
                 <div>
                     <label for="status">Current Status</label>
-                    <select name="status" id="status">
-                        {{createOptionElement "Starting.." project.status}}
-                        {{createOptionElement "Finished" project.status}}
+                    <select class="form-select w-25" name="status" id="status">
                         <!-- TODO add in a rotating stage selection -->
                     </select>
                 </div>
             </div>
-        </form>
     </fieldset>
     <button class="offset-3 btn btn-primary">Save Changes</button>
 </form>

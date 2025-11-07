@@ -7,6 +7,8 @@ const materialSchema = {
     projectId: {type:String, require:true},
     amount: {type:Number, require:true},
     costperunit: {type:Number, require:true},
+    orderamount: {type:Number, require:true},
+    amountused: {type:Number},
 };
 
 const mongooseSchema = new mongoose.Schema(materialSchema);
