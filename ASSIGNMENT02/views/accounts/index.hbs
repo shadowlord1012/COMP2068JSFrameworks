@@ -1,14 +1,9 @@
 <h1>{{title}}</h1>
 &nbsp;
 <h2>All Projects</h2>
-<select id="projectSelect">
-    {{#each data}}
-        <option value="{{this.id}}" >{{this.name}}</option>
-    {{/each}}
-</select>
-<button 
+<a href="/materials" class="btn btn-info btn-sm">Add Material to A project</a>
 <!-- Basic layout of the different Projects -->
-<table class="table table-hover">
+<table class="table table-hover" id="accountingTable">
     <thead>
         <th>Project ID</th>
         <th>Project Name</th>
@@ -18,14 +13,14 @@
         <th>Over/Under</th>
     </thead>
     <tbody>
-        {{#each projectData}}
+        {{#each accountData}}
         <tr class="table-{{this.statusCost}}">
-            <td><a href="/accounts/{{this.id}}" class="btn btn-success">{{this.projectId}}</a></td>
-            <td>{{this.name}}</td>
-            <td>{{this.cost}}</td>
-            <td>{{this.billed}}</td>
+            <td>{{this.projectId}}</td>
+            <td>{{this.projectname}}</td>
+            <td>{{this.currenctCost}}</td>
+            <td>{{this.billedAmount}}</td>
             <td>{{this.budget}}</td>
-            <td>{{this.differ}}</td>
+            <td>{{this.difference}}</td>
         </tr>
         {{/each}}
     </tbody>

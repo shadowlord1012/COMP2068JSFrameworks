@@ -1,3 +1,27 @@
 <h1>{{title}}</h1>
 &nbsp;
-<h2>Select Project</h2>
+<h2>{{projectId}}</h2>
+
+<a href="/materials/add" class="btn btn-primary">Add</a>
+<table class="table table-hover">
+    <thead>
+        <th>Project ID</th>
+        <th>Name</th>
+        <th>Amount Shipped</th>
+        <th>Current Cost</th>
+        <th>Order Amount</th>
+        <th>Amount Used</th>
+    </thead>
+    <tbody>
+        {{#each materialSet}}
+        <tr>
+            <td>{{this.projectId}}</td>
+            <td>{{this.name}}</td>
+            <td>{{this.amountshipped}}</td>
+            <td>{{this.costperunit}}</td>
+            <td>{{this.orderamount}}</td>
+            <td>{{this.amountused}}</td>
+        </tr>
+        {{/each}}
+    </tbody>
+</table>

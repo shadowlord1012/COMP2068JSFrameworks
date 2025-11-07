@@ -4,7 +4,7 @@ var router = express.Router();
 
 const Project = require("../models/project");
 
-//controls everthing that has to do with te index
+//controls everthing that has to do with the index
 router.get("/", async (req,res,next) =>{
 
     //gets the data from the database and sorts it by te id

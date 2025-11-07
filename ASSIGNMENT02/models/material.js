@@ -5,10 +5,10 @@ const mongoose = require('mongoose');
 const materialSchema = {
     name: { type: String, require:true},
     projectId: {type:String, require:true},
-    amount: {type:Number, require:true},
     costperunit: {type:Number, require:true},
     orderamount: {type:Number, require:true},
     amountused: {type:Number},
+    amountshipped: {type:Number},
 };
 
 const mongooseSchema = new mongoose.Schema(materialSchema);

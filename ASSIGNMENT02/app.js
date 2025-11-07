@@ -4,6 +4,7 @@ var path = require('path');
 var cookieParser = require('cookie-parser');
 var logger = require('morgan');
 var mongoose = require('mongoose');
+var hbs = require('hbs');
 
 //Enviroment variables
 require("dotenv").config();
@@ -12,6 +13,7 @@ var indexRouter = require('./routes/index');
 var usersRouter = require('./routes/users');
 var projectRouter = require('./routes/projects');
 var accountRouter = require('./routes/accounts');
+var materialRouter = require('./routes/materials');
 
 
 var app = express();
@@ -21,7 +23,15 @@ mongoose
   .then(() => console.log("Connected To MongoDB!"))
   .catch((err) => console.error("Connection Error:",err));
 
-
+//Hbs helper functions
+hbs.registerHelper("createOptionElement", (currentvalue, selectedvalue) =>{
+if(currentvalue === selectedvalue){
+  return new hbs.SafeString("<option selected>"+currentvalue+"</option>");
+}
+else {
+  return new hbs.SafeString("<option>"+currentvalue+"</option>");
+}
+});
 
 // view engine setup
 app.set('views', path.join(__dirname, 'views'));
@@ -37,6 +47,7 @@ app.use('/', indexRouter);
 app.use('/users', usersRouter);
 app.use('/projects', projectRouter);
 app.use('/accounts', accountRouter);
+app.use('/materials',materialRouter);
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
