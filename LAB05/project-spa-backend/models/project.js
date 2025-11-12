@@ -14,4 +14,4 @@ const schemaObj = {
 const mongooseSchema = new mongoose.Schema(schemaObj);
 
 //creates and exports mongoose model
-module.exports = mongoose.model("Project_Tracker",mongooseSchema);
+module.exports = mongoose.model("Projects_Tracker",mongooseSchema);

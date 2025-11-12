@@ -10,6 +10,10 @@ import { HttpClientModule } from '@angular/common/http';
 //Import the project service so we can inject it into the component
 import { ProjectService } from './services/project.service';
 
+// imports formsmodule to enable binding of input fiels with component properties
+import { FormsModule } from '@angular/forms';
+
+
 @NgModule({
   declarations: [
     App,
@@ -19,6 +23,7 @@ import { ProjectService } from './services/project.service';
     BrowserModule,
     AppRoutingModule,
     HttpClientModule,
+    FormsModule, //Allows you to bind input fields
   ],
   providers: [ //list of services needed
     ProjectService,

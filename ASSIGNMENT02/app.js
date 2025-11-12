@@ -19,7 +19,7 @@ var materialRouter = require('./routes/materials');
 var app = express();
 
 mongoose
-.connect(process.env.MONGODB_URI)
+.connect(process.env.CONNECTION_STRING_MONGODB)
   .then(() => console.log("Connected To MongoDB!"))
   .catch((err) => console.error("Connection Error:",err));
 
