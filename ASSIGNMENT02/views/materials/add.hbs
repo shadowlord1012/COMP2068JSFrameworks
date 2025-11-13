@@ -3,8 +3,8 @@
     <fieldset>
             <div class="form-row">
                 <div class="col-md-4 mb-3">
-                    <label for="projectIndicator">Project ID Number</label>
-                    <select name="projectIndicator" id="projectIndicator">
+                    <label for="projectId">Project ID Number</label>
+                    <select name="projectId" id="projectId">
                         {{#each projectData}}
                         <option value="{{this.projectId}}">{{this.projectId}}</option>
                         {{/each}}
@@ -15,20 +15,20 @@
                     <input type="text" class="form-control" name="name" id="name" required>
                 </div>
                 <div class="col-md-6 mb-3">
-                    <label for="basecostperunit">Cost Per Unit</label>
-                    <input type="nunmber" name="basecostperunit" id="basecostperunit"  required>
+                    <label for="costperunit">Cost Per Unit</label>
+                    <input type="nunmber" name="costperunit" id="costperunit"  required>
                 </div>
                 <div class="col-md-6 mb-3">
-                    <label for="orderedamount">Amount Ordered</label>
-                    <input type="number" name="orderedamount" id="orderedamount" required>
+                    <label for="orderamount">Amount Ordered</label>
+                    <input type="number" name="orderamount" id="orderamount" required>
                 </div>
                 <div class="col-md-6 mb-3">
                     <label for="amountused">Amount Used</label>
                     <input type="number" name="amountused" id="amountused" required>
                 </div>
                 <div class="col-md-6 mb-3">
-                    <label for="amountship">Amount Shipped</label>
-                    <input type="number" name="amountship" id="amountship" required>
+                    <label for="amountshipped">Amount Shipped</label>
+                    <input type="number" name="amountshipped" id="amountshipped" required>
                 </div>
             </div>
     </fieldset>

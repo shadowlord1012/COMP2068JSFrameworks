@@ -19,7 +19,6 @@ router.get("/", async (req,res,next) => {
         accountingInfo.projectname = element.name;
         accountingInfo.billedAmount = 50.00;
         accountingInfo.budget = 2000.00;
-        accountingInfo.currenctCost = 0.00;
 
         materialData.forEach((materialInfo) =>{
             if(materialInfo.projectId == element.projectId)

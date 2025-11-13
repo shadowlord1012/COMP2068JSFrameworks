@@ -11,6 +11,7 @@
         <th>Current Cost</th>
         <th>Order Amount</th>
         <th>Amount Used</th>
+        <th></th>
     </thead>
     <tbody>
         {{#each materialSet}}
@@ -21,6 +22,9 @@
             <td>{{this.costperunit}}</td>
             <td>{{this.orderamount}}</td>
             <td>{{this.amountused}}</td>
+            <td>
+                <a class="btn btn-danger" onclick="">Delete</a>
+            </td>
         </tr>
         {{/each}}
     </tbody>
