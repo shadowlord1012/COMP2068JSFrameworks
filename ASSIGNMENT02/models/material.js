@@ -1,5 +1,6 @@
 //required plugins
 const mongoose = require('mongoose');
+const delievery = require('./delievery');
 
 //create the schema
 const materialSchema = {
@@ -9,6 +10,7 @@ const materialSchema = {
     orderamount: {type:Number, require:true},
     amountused: {type:Number},
     amountshipped: {type:Number},
+    delieveryID: {type:String},
 };
 
 const mongooseSchema = new mongoose.Schema(materialSchema);

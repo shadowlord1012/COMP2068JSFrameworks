@@ -7,24 +7,26 @@
     <thead>
         <th>Project ID</th>
         <th>Project Name</th>
+        <th>Project Type</th>
         <th>Start Date</th>
         <th>Estimate Finish Date</th>
         <th>Current Status</th>
+        <th></th>
     </thead>
     <tbody>
         {{#each projectSet}}
         <tr>
             <td>{{this.projectId}}</a></td>
             <td>{{this.name}}</td>
-            <td>{{this.startDate}}</td>
-            <td>{{this.estimateDate}}</td>
+            <td>{{this.projectType}}</td>
+            <td>{{toShortDate this.startDate}}</td>
+            <td>{{toShortDate this.estimateDate}}</td>
             <td>{{this.status}}</td>
             <td>
-                {{#if ../user}}
-                <a href="/projects/edit/{{this.id}}" class="btn btn-info">Update</a>
+                <a href="/projects/edit/{{this._id}}" class="btn btn-info">Update</a>
                 &nbsp;
-                <a href="/projects/delete/{{this.id}}" class="btn btn-danger">Delete</a>
-                {{/if}}
+                <a href="/projects/delete/{{this._id}}" class="btn btn-danger"
+                    onclick="return comfirmDeletion()">Delete</a>
             </td>
         </tr>
         {{/each}}

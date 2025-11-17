@@ -3,6 +3,7 @@ var express = require('express');
 var router = express.Router();
 
 const Project = require("../models/project");
+const Account = require("../models/accounting");
 
 //controls everthing that has to do with the index
 router.get("/", async (req,res,next) =>{
@@ -29,6 +30,10 @@ router.post("/add", async (req,res,next) =>{
         projectId: req.body.projectId,
         startDate: req.body.startDate,
         estimateDate: req.body.estimateDate,
+        budget: req.body.budget,            
+        projectOwnerName: req.body.projectOwnerName,
+        projectOwnerAddress: req.body.projectOwnerAddress,
+        projectType: req.body.projectType,
     });
 
     //saves it to the database
@@ -53,19 +58,21 @@ router.get("/edit/:_id", async (req,res,next) => {
 router.post("/edit/:_id", async (req,res,next) => {
 
     //gets the id from the params in the url
-    let projectId = req.params._id;
-
+    let proj = req.params._id;
     //finds and updates that project in the database
-    await Project.findByIdAndUpdate(
-        {_id: projectId},
-        {
+    await Project.findOneAndUpdate(
+        {_id: proj},
+        { $set:{
             name: req.body.name,
             projectId: req.body.id,
             startDate: req.body.startDate,
             estimateDate: req.body.estimateDate,
             status: req.body.status,
+            budget: req.body.budget,
+            }
         }
-    );
+    );    
+
     res.redirect("/projects");
 });
 

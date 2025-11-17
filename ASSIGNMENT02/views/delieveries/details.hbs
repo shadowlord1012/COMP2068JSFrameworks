@@ -1,0 +1,40 @@
+<h1>{{title}}</h1>
+&nbsp;
+<a href="/delieveries/index" class="btn btn-primary">Back</a>
+<div>
+    <h3>Project ID</h3>
+    <p>{{delievery.projectId}}</p>
+</div>
+<div>
+    <h3>Deleivery ID</h3>
+    <p>{{delievery.delieveryId}}</p>
+</div>
+<div>
+    <h3>Date</h3>
+    <p>{{delievery.Date}}</p>
+</div>
+<div>
+    <h3>Address</h3>
+    <p>{{delievery.projectOwnerAddress}}</p>
+</div>
+<div>
+    <h3>Current Status</h3>
+    <p>{{delievery.status}}</p>
+</div>
+<div>
+    <h3>Items Coming</h3>
+    {{#each materialData}}
+    <table class="table table-stipped">
+        <thead>
+            <th>Name</th>
+            <th>Amount ordered</th>
+            <th>Amount Shipped</th>
+        </thead>
+        <tbody>
+            <tr>{{this.name}}</tr>
+            <tr>{{this.orderamount}}</tr>
+            <tr>{{this.amountshipped}}</tr>
+        </tbody>
+    </table>
+    {{/each}}
+</div>

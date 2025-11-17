@@ -5,15 +5,24 @@ var cookieParser = require('cookie-parser');
 var logger = require('morgan');
 var mongoose = require('mongoose');
 var hbs = require('hbs');
+var passport = require('passport');
+var session = require('express-session');
 
 //Enviroment variables
 require("dotenv").config();
+
+//import the required models for passport to use
+var Acc = require('./models/accounting');
+var Proj = require('./models/project');
+var User = require('./models/user');
+
 
 var indexRouter = require('./routes/index');
 var usersRouter = require('./routes/users');
 var projectRouter = require('./routes/projects');
 var accountRouter = require('./routes/accounts');
 var materialRouter = require('./routes/materials');
+var delieveryRouter = require('./routes/delieveries');
 
 
 var app = express();
@@ -33,6 +42,36 @@ else {
 }
 });
 
+//Used to calculate total amounts in hbs
+hbs.registerHelper("math",(lvalue,operator,rvalue) => {
+  lvalue = parseFloat(lvalue);
+  rvalue = parseFloat(rvalue);
+  return {
+    "+": lvalue + rvalue,
+    "-": lvalue - rvalue,
+    "*": lvalue * rvalue,
+    "/": lvalue / rvalue,
+    "%": lvalue % rvalue
+  }[operator];
+});
+
+//Checks to see if 2 values are equal
+hbs.registerHelper('buttonRemoverMaterials',(value) => {
+  if(value.statusCost === "success")
+    return;
+  else    
+    return new hbs.SafeString('<a href="/materials/'+value.projectId+'" class="btn btn-info btn-sm">Add Material</a>');
+});
+
+//rounds the number values to 2 decimal places
+hbs.registerHelper('decimalNumber',(a) => {
+  return Math.trunc(a*100)/100;
+});
+
+//to shorten the date and make it much more readable
+hbs.registerHelper("toShortDate",(longDateValue) =>{
+  return new hbs.SafeString(longDateValue.toLocaleDateString("en-CA"));
+});
 // view engine setup
 app.set('views', path.join(__dirname, 'views'));
 app.set('view engine', 'hbs');
@@ -43,11 +82,28 @@ app.use(express.urlencoded({ extended: false }));
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
 
+app.use(session({
+  secret: "InventoryManagementSystem", 
+  resave: false,
+  saveUninitialized: false,
+
+}));
+
+//passport configuration
+app.use(passport.initialize());
+app.use(passport.session());
+
+//Passport stragtegies
+passport.use(User.createStrategy());
+passport.serializeUser(User.serializeUser());
+passport.deserializeUser(User.deserializeUser());
+
 app.use('/', indexRouter);
 app.use('/users', usersRouter);
 app.use('/projects', projectRouter);
 app.use('/accounts', accountRouter);
 app.use('/materials',materialRouter);
+app.use('/delieveries',delieveryRouter);
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {

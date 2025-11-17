@@ -1,29 +1,29 @@
 <h1>{{title}}</h1>
-&nbsp;
-<h2>{{projectId}}</h2>
-
-<a href="/materials/add" class="btn btn-primary">Add</a>
-<table class="table table-hover">
+<h2>Current Project: {{projectID}}</h2>
+<a href="/materials/add/{{projectID}}" class="btn btn-primary">Add</a>
+<a href="/accounts" class="btn btn-info">Back</a>
+<table class="table table-hover table-stripped">
     <thead>
-        <th>Project ID</th>
         <th>Name</th>
         <th>Amount Shipped</th>
-        <th>Current Cost</th>
         <th>Order Amount</th>
         <th>Amount Used</th>
+        <th>Current Cost</th>
+        <th>Total Cost</th>
         <th></th>
     </thead>
     <tbody>
         {{#each materialSet}}
         <tr>
-            <td>{{this.projectId}}</td>
             <td>{{this.name}}</td>
             <td>{{this.amountshipped}}</td>
-            <td>{{this.costperunit}}</td>
             <td>{{this.orderamount}}</td>
             <td>{{this.amountused}}</td>
+            <td>{{this.costperunit}}</td>
+            <td>{{math this.costperunit "*" this.amountused}}</td>
             <td>
-                <a class="btn btn-danger" onclick="">Delete</a>
+                <a href="/materials/{{this.projectId}}/delete/{{this.id}}" class="btn btn-danger" 
+                onclick="return confirmDeletion()">Delete</a>
             </td>
         </tr>
         {{/each}}

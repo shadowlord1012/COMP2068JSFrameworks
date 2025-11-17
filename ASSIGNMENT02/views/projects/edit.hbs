@@ -4,20 +4,36 @@
         <form>
             <div class="form-row">
                 <div class="col-md-4 mb-3">
-                    <label for="projectID">Project ID Number</label>
-                    <input type="text" class="form-control" name="projectID" id="projectId" value="{{project.projectID}}" required>
+                    <label for="projectId">Project ID Number</label>
+                    <input type="text" class="form-control" name="projectId" id="projectId" value="{{project.projectId}}" required disabled>
                 </div>
                 <div class="col-md-4 mb-3">
                     <label for="projectName">Project Name</label>
-                    <input type="text" class="form-control" name="projectName" id="projectName" value="{{project.name}}" required>
+                    <input type="text" class="form-control" name="projectName" id="projectName" value="{{project.name}}" required disabled>
+                </div>
+                <div class="col-md-4 mb-3">
+                    <label for="projectType">Project Type</label>
+                    <input type="text" class="form-control" name="projectType" id="projectType" value="{{project.projectType}}" required>
+                </div>                
+                <div class="col-md-4 mb-3">
+                    <label for="projectOwnerName">Home Owners Name</label>
+                    <input type="text" class="form-control" name="projectOwnerName" id="projectOwnerName" value="{{project.projectOwnerName}}" required>
+                </div>                
+                <div class="col-md-4 mb-3">
+                    <label for="projectOwnerAddress">Address</label>
+                    <input type="text" class="form-control" name="projectOwnerAddress" id="projectOwnerAddress" value="{{project.projectOwnerAddress}}" required>
                 </div>
                 <div class="col-md-6 mb-3">
                     <label for="startDate">Start Date</label>
-                    <input type="date" name="startDate" id="startDate" value="{{project.startDate}}" required disabled>
+                    <input type="date" name="startDate" id="startDate" value="{{toShortDate project.startDate}}" required disabled>
                 </div>
                 <div class="col-md-6 mb-3">
                     <label for="estimateDate">Estimate Time Of Finish</label>
-                    <input type="date" name="estimateDate" id="estimateDate" value="{{project.estimateDate}}">
+                    <input type="date" name="estimateDate" id="estimateDate" value="{{toShortDate project.estimateDate}}">
+                </div>
+                <div class="col-md-6 mb-3">
+                    <label for="budget">Budget</label>
+                    <input type="number" name="budget" id="budget" value="{{project.budget}}" required>
                 </div>
                 <div>
                     <label for="status">Current Status</label>
@@ -28,7 +44,8 @@
                     </select>
                 </div>
             </div>
+            <button class="offset-3 btn btn-primary">Save Changes</button>
         </form>
-    </fieldset>
-    <button class="offset-3 btn btn-primary">Save Changes</button>
+    </fieldset>    
+    <a href="/projects" class="offset-3 btn btn-info">Back</a>
 </form>

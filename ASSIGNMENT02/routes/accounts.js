@@ -7,57 +7,95 @@ const Accounts = require('../models/accounting');
 
 
 router.get("/", async (req,res,next) => {
-    let projectdata = await Project.find().sort();
 
-    //Open up after material CRUD is complete
-    let materialData = await Materials.find().sort(projectdata.projectId);
-
-    projectdata.forEach(async (element) =>{
-        let accountingInfo = new Accounts;
-
-        accountingInfo.projectId = element.projectId;
-        accountingInfo.projectname = element.name;
-        accountingInfo.billedAmount = 50.00;
-        accountingInfo.budget = 2000.00;
-
-        materialData.forEach((materialInfo) =>{
-            if(materialInfo.projectId == element.projectId)
-            {
-                accountingInfo.currenctCost += materialInfo.costperunit*materialInfo.amountused;
-            }
+    //gets all the project information and creates the accounts
+    Project.find()
+        .sort()
+        .then(async (project) => {
+            project.forEach(proj => {
+                Accounts.exists({projectId:proj.projectId})
+                       .then(result =>{
+                        if(result) {
+                            
+                        }
+                        else {
+                            Accounts.create({
+                                //Sets all the values of the create
+                                projectId: proj.projectId,
+                                projectname: proj.name,
+                                currenctCost: 0.00,
+                                billedAmount: 0.00,
+                                budget: proj.budget,
+                                difference: 0.00,
+                                statusCost: "active",})
+                                .then(result => {
+                                    result.save();
+                                });
+                        }
+                       });
+                
+            });
+        })
+        .catch(err => {
+            res.status(500).json(err);
         });
+    //loads all the account information
+    Accounts.find()
+        .sort()
+        .then(async accountInfo => {
 
-        accountingInfo.difference = accountingInfo.budget-accountingInfo.billedAmount;
+            //gets all the materials and populates it by project id
+            let material =  await Materials.find().populate('projectId');
+            
+            //Goes though all the materials
+            material.forEach(mat => {
+                //goes though all the accounts
+                accountInfo.forEach(acc =>{
+                    //if the ids match
+                    if(mat.projectId == acc.projectId){
 
-        if(accountingInfo.difference < 100.00)
-        {
-            accountingInfo.statusCost = "warning";
-        }
-        else{
-            accountingInfo.statusCost = "active";
-        }
-        try{
-            const exists = await Accounts.findOne({projectname: element.name});
-            console.log(exists);
-            if(!exists)
-                await accountingInfo.save();
-
-            else {
-                await Accounts.findByIdAndUpdate(
-                    {projectId:accountingInfo.projectId, projectname: accountingInfo.projectname},
-                    {accountingInfo});
-                console.log("update");
-            }
-
-        } catch(error){}
-    });
-
-    let accountinglist = await Accounts.find().sort();
-
-    //TODO change project data to accountInfo once materials are done
-    res.render("accounts/index", {title: "Accounts", data : projectdata, accountData : accountinglist});
+                        //calculate the running cost
+                        acc.currenctCost += mat.costperunit*mat.amountused;
+                        
+                        //gets the difference in values
+                        acc.difference = acc.budget-acc.currenctCost;
+                        
+                        //makes sure the project is still active
+                        if(acc.statusCost != "success"){
+                            
+                            //changes the colouring of the table background
+                            switch(true)
+                            {
+                                case acc.difference >= 500:
+                                    acc.statusCost = "active";
+                                    break;
+                                case acc.difference >= 250:
+                                    acc.statusCost = "warning";
+                                    break;
+                                default:
+                                    acc.statusCost = "danger";
+                                    break;
+                            }
+                        }                      
+                    }
+                });
+            });
+            return res.render("accounts/index", {title: "Accounts", accountData : accountInfo});            
+        })
+        .catch(err => {
+            return res.status(500).json(err);
+        });
 });
 
+
+//The delete from Accounts methods
+router.get("/delete/:_id", async (req,res,next) => {
+    let accountId = req.params._id;
+
+    await Accounts.findByIdAndDelete(accountId);
+
+    res.redirect("/accounts");
+});
 
 
 module.exports = router;

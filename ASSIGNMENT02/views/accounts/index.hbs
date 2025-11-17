@@ -1,26 +1,28 @@
 <h1>{{title}}</h1>
 &nbsp;
 <h2>All Projects</h2>
-<a href="/materials" class="btn btn-info btn-sm">Add Material to A project</a>
 <!-- Basic layout of the different Projects -->
 <table class="table table-hover" id="accountingTable">
     <thead>
         <th>Project ID</th>
         <th>Project Name</th>
         <th>Current Cost</th>
-        <th>Current Billed</th>
         <th>Budget</th>
         <th>Over/Under</th>
+        <th></th>
     </thead>
     <tbody>
         {{#each accountData}}
         <tr class="table-{{this.statusCost}}">
             <td>{{this.projectId}}</td>
             <td>{{this.projectname}}</td>
-            <td>{{this.currenctCost}}</td>
-            <td>{{this.billedAmount}}</td>
-            <td>{{this.budget}}</td>
-            <td>{{this.difference}}</td>
+            <td>{{decimalNumber this.currenctCost}}</td>
+            <td>{{decimalNumber this.budget}}</td>
+            <td>{{decimalNumber this.difference}}</td>
+            <td>
+                {{buttonRemoverMaterials this}}
+                <a href="accounts/delete/{{this._id}}" class="btn btn-danger">delete</a>
+            </td>
         </tr>
         {{/each}}
     </tbody>

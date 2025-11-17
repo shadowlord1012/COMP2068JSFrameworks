@@ -12,6 +12,18 @@
                 <div class="col-md-4 mb-3">
                     <label for="projectName">Project Name</label>
                     <input type="text" class="form-control" name="projectName" id="projectName" required>
+                </div>                
+                <div class="col-md-4 mb-3">
+                    <label for="projectType">Project Type</label>
+                    <input type="text" class="form-control" name="projectType" id="projectType" required>
+                </div>                
+                <div class="col-md-4 mb-3">
+                    <label for="projectOwnerName">Home Owners Name</label>
+                    <input type="text" class="form-control" name="projectOwnerName" id="projectOwnerName" required>
+                </div>                
+                <div class="col-md-4 mb-3">
+                    <label for="projectOwnerAddress">Address</label>
+                    <input type="text" class="form-control" name="projectOwnerAddress" id="projectOwnerAddress" required>
                 </div>
                 <div class="col-md-6 mb-3">
                     <label for="startDate">Start Date</label>
@@ -21,13 +33,12 @@
                     <label for="estimateDate">Estimate Time Of Finish</label>
                     <input type="date" name="estimateDate" id="estimateDate" required>
                 </div>
-                <div>
-                    <label for="status">Current Status</label>
-                    <select class="form-select w-25" name="status" id="status">
-                        <!-- TODO add in a rotating stage selection -->
-                    </select>
+                <div class="col-md-6 mb-3">
+                    <label for="budget">Budget</label>
+                    <input type="number" name="budget" id="budget" required>
                 </div>
             </div>
     </fieldset>
     <button class="offset-3 btn btn-primary">Save Changes</button>
+    <a href="/projects" class="offset-3 btn btn-info">Back</a>
 </form>
