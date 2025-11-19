@@ -97,7 +97,10 @@ app.use(passport.session());
 
 //Passport stragtegies
 passport.use(User.createStrategy());
+passport.serializeUser(User.serializeUser());
+passport.deserializeUser(User.deserializeUser());
 
+console.log(configs.Authentication.GitHub.ClientID);
 //Github strategy
 passport.use(new githubStrat(
   //options object
@@ -132,8 +135,6 @@ passport.use(new githubStrat(
 ));
 
 
-passport.serializeUser(User.serializeUser());
-passport.deserializeUser(User.deserializeUser());
 
 app.use('/', indexRouter);
 app.use('/users', usersRouter);
