@@ -99,7 +99,7 @@ app.use(passport.session());
 passport.use(User.createStrategy());
 
 //Github strategy
-passport.use(new githubStrat (
+passport.use(new githubStrat(
   //options object
   {
     clientID: configs.Authentication.GitHub.ClientID,
