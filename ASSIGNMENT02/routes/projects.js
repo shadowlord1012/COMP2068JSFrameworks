@@ -32,7 +32,13 @@ router.post("/add", async (req,res,next) =>{
         estimateDate: req.body.estimateDate,
         budget: req.body.budget,            
         projectOwnerName: req.body.projectOwnerName,
-        projectOwnerAddress: req.body.projectOwnerAddress,
+        projectOwnerAddress: {
+            street: req.body.street,
+            city: req.body.city,
+            state: req.body.state,
+            zip: req.body.zip,
+        },
+
         projectType: req.body.projectType,
     });
 

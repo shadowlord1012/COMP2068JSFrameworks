@@ -9,7 +9,7 @@ const Accounts = require('../models/accounting');
 router.get("/", async (req,res,next) => {
 
     //gets all the project information and creates the accounts
-    Project.find()
+    await Project.find()
         .sort()
         .then(async (project) => {
             project.forEach(proj => {
@@ -40,7 +40,7 @@ router.get("/", async (req,res,next) => {
             res.status(500).json(err);
         });
     //loads all the account information
-    Accounts.find()
+    await Accounts.find()
         .sort()
         .then(async accountInfo => {
 

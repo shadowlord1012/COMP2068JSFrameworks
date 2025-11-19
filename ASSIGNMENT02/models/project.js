@@ -7,7 +7,14 @@ const projectSchema = {
     name: { type: String, require:true},
     projectId: {type:String, require:true},
     projectOwnerName: {type:String, require:true},
-    projectOwnerAddress: {type:String, require:true},
+    projectOwnerAddress: [
+        {
+            street: {type:String, require:true},
+            city: {type:String,require:true},
+            state: {type:String,require:true},
+            zip: {type:String,require:true},
+        }
+    ],
     projectType: {type:String,require:true},
     startDate: {type:Date, require:true},
     estimateDate: {type:Date, require:true},

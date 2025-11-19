@@ -1,0 +1,24 @@
+<h1>{{title}}</h1>
+<form method="POST">
+    <fieldset>
+        <div>
+            <div>
+                <label for="projectId">Project ID</label>
+                <select name="projectId" id="projectId" disabled>
+                        <option>{{deliveryData.projectId}}</option>
+                </select>
+            </div>
+            <div>
+                <label for="deliveryId">Delivery ID Number</label>
+                <input type="deliveryId" class="form-control" name="deliveryId" 
+                    value={{deliveryData.deliveryId}} id="deliveryId" disabled>
+            </div>
+            <div>
+                <label for="expectedDate">Expected Date</label>
+                <input type="date" name="expectedDate" id="expectedDate" required>
+            </div>
+        </div>
+        <button class="btn btn-primary">Save</button>
+        <a href="/deliveries" class="btn btn-info">Back</a>
+    </fieldset>
+</form>

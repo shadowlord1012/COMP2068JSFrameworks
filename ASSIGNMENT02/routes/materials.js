@@ -4,6 +4,7 @@ var router = express.Router();
 
 const Material = require("../models/material");
 const Project = require('../models/project');
+const Delivery = require('../models/delivery');
 
 //controls everything that has to deal with the index
 router.get("/:projectId", async (req,res,next) =>{
@@ -22,7 +23,10 @@ router.get("/:projectId", async (req,res,next) =>{
 router.get("/add/:projectId",async (req,res,next) =>{
     Project.findById(req.params._id)
         .then(projectInfo => {
-            return res.render("materials/add", {title: "Material lists", projectData : projectInfo});
+            Delivery.find({projectId: req.params.projectId}).then(data => {
+
+                return res.render("materials/add", {title: "Material lists", projectData : projectInfo, deliveryData:data});
+            });
         })
         .catch(err =>{
             return res.status(500).json(err);
@@ -36,6 +40,7 @@ router.post("/add/:projectId", async (req,res,next) =>{
     Material.create(req.body)
         .then(async (materials) =>{
             materials.projectId = req.params.projectId;
+            materials.deliveryID = req.body.deliveryId;
             await materials.save();
             return res.redirect("/materials/"+req.params.projectId);
         })

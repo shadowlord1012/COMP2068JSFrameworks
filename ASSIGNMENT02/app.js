@@ -22,7 +22,7 @@ var usersRouter = require('./routes/users');
 var projectRouter = require('./routes/projects');
 var accountRouter = require('./routes/accounts');
 var materialRouter = require('./routes/materials');
-var delieveryRouter = require('./routes/delieveries');
+var delieveryRouter = require('./routes/deliveries');
 
 
 var app = express();
@@ -33,6 +33,7 @@ mongoose
   .catch((err) => console.error("Connection Error:",err));
 
 //Hbs helper functions
+
 hbs.registerHelper("createOptionElement", (currentvalue, selectedvalue) =>{
 if(currentvalue === selectedvalue){
   return new hbs.SafeString("<option selected>"+currentvalue+"</option>");
@@ -103,7 +104,7 @@ app.use('/users', usersRouter);
 app.use('/projects', projectRouter);
 app.use('/accounts', accountRouter);
 app.use('/materials',materialRouter);
-app.use('/delieveries',delieveryRouter);
+app.use('/deliveries',delieveryRouter);
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {

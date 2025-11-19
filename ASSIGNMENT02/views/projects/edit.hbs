@@ -20,8 +20,15 @@
                     <input type="text" class="form-control" name="projectOwnerName" id="projectOwnerName" value="{{project.projectOwnerName}}" required>
                 </div>                
                 <div class="col-md-4 mb-3">
-                    <label for="projectOwnerAddress">Address</label>
-                    <input type="text" class="form-control" name="projectOwnerAddress" id="projectOwnerAddress" value="{{project.projectOwnerAddress}}" required>
+                    <h3>Address</h3>
+                    <label for="street">Street</label>
+                    <input type="text" class="form-control" name="street" id="street" value="{{project.projectOwnerAddress.0.street}}" required disabled>
+                    <label for="city">City</label>
+                    <input type="text" class="form-control" name="city" id="city" value="{{project.projectOwnerAddress.0.city}}"required disabled>
+                    <label for="state">Province or State</label>
+                    <input type="text" class="form-control" name="state" id="state" value="{{project.projectOwnerAddress.0.state}}"required disabled>
+                    <label for="zip">Postal Code</label>
+                    <input type="text" class="form-control" name="zip" id="zip" value="{{project.projectOwnerAddress.0.zip}}"required disabled>
                 </div>
                 <div class="col-md-6 mb-3">
                     <label for="startDate">Start Date</label>
