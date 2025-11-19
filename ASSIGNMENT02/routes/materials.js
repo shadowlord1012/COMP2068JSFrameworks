@@ -5,14 +5,15 @@ var router = express.Router();
 const Material = require("../models/material");
 const Project = require('../models/project');
 const Delivery = require('../models/delivery');
+const authenticationMiddleware = require('../extensions/authentication');
 
 //controls everything that has to deal with the index
-router.get("/:projectId", async (req,res,next) =>{
+router.get("/:projectId", authenticationMiddleware, async (req,res,next) =>{
     //Gets all the information for the materials
     Material.find({projectId: req.params.projectId})
         .sort()
         .then(materialData => {
-            return res.render('materials/index', {title: "Materials", materialSet : materialData, projectID : req.params.projectId});
+            return res.render('materials/index', {title: "Materials", materialSet : materialData, projectID : req.params.projectId,user: req.user});
         })
         .catch(err =>{
             return res.status(500).json(err);
@@ -20,12 +21,12 @@ router.get("/:projectId", async (req,res,next) =>{
 });
 
 //CRUD functions for the materials 
-router.get("/add/:projectId",async (req,res,next) =>{
+router.get("/add/:projectId", authenticationMiddleware, async (req,res,next) =>{
     Project.findById(req.params._id)
         .then(projectInfo => {
             Delivery.find({projectId: req.params.projectId}).then(data => {
 
-                return res.render("materials/add", {title: "Material lists", projectData : projectInfo, deliveryData:data});
+                return res.render("materials/add", {title: "Material lists", projectData : projectInfo, deliveryData:data,user: req.user});
             });
         })
         .catch(err =>{

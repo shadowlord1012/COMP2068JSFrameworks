@@ -4,6 +4,7 @@ var router = express.Router();
 
 const Project = require("../models/project");
 const Account = require("../models/accounting");
+var authenticationMiddleware = require('../extensions/authentication');
 
 //controls everthing that has to do with the index
 router.get("/", async (req,res,next) =>{
@@ -11,18 +12,18 @@ router.get("/", async (req,res,next) =>{
     //gets the data from the database and sorts it by te id
     let projectData = await Project.find().sort({id: 1});
 
-    res.render('projects/index',{title: "Current Projects", projectSet: projectData});
-});;
+    res.render('projects/index',{title: "Current Projects", projectSet: projectData,user: req.user});
+});
 
 //All the CRUD functions for the projects table.
 
 //Add get methods
-router.get("/add", async (req,res,next) =>{
-    res.render("projects/add", {title: "Add a new Project"});
+router.get("/add", authenticationMiddleware, async (req,res,next) =>{
+    res.render("projects/add", {title: "Add a new Project",user: req.user});
 });
 
 //Add POST method
-router.post("/add", async (req,res,next) =>{
+router.post("/add",  async (req,res,next) =>{
 
     //creates a new project object
     let newProject = new Project( {
@@ -50,14 +51,14 @@ router.post("/add", async (req,res,next) =>{
 });
 
 //Edit (Update) get method
-router.get("/edit/:_id", async (req,res,next) => {
+router.get("/edit/:_id", authenticationMiddleware, async (req,res,next) => {
 
     //gets the id from the params in the url
     let projectId = req.params._id;
 
     //finds the data within the database based off of the id 
     let projectData = await Project.findById(projectId);
-    res.render("projects/edit", {title:"Edit Current Project", project : projectData});
+    res.render("projects/edit", {title:"Edit Current Project", project : projectData, user: req.user});
 });
 
 //edit (update) POST method

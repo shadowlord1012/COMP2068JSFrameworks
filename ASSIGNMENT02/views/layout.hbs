@@ -40,6 +40,7 @@
                 <img src="/images/25694.png" class="bi d-block mx-auto mb-1" width="24" height="24" aria-hidden="true" alt="home icon"> 
                  Home </a>
               </li>
+              {{#if user}}
               <li>
                 <a href="/projects" class="nav-link text-white">
                   <img src="/images/Projects.png" class="bi d-block mx-auto mb-1" width="24" height="24" aria-hidden="true" alt="projects">
@@ -59,11 +60,27 @@
                 </a>
               </li>
               <li>
-                <a href="#" class="nav-link text-white">
+                <a href="/logout" class="nav-link text-white">
+                  <img src="/images/login.png" class="bi d-block mx-auto mb-1" width="24" height="24" aria-hidden="true" alt="login">
+                  Logout
+                </a>
+              </li><li class="nav-item">
+                <a class="nav-link" href="#">{{user.username}}</a>
+              </li>
+              {{else}}
+              <li>
+                <a href="/register" class="nav-link text-white">
+                  <img src="/images/login.png" class="bi d-block mx-auto mb-1" width="24" height="24" aria-hidden="true" alt="login">
+                  Register
+                </a>
+              </li>
+              <li>
+                <a href="/login" class="nav-link text-white">
                   <img src="/images/login.png" class="bi d-block mx-auto mb-1" width="24" height="24" aria-hidden="true" alt="login">
                   Login
                 </a>
               </li>
+              {{/if}}
             </ul>
           </div>
         </div>
@@ -73,5 +90,6 @@
     {{{body}}}
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.min.js"
      integrity="sha384-0pUGZvbkm6XF6gxjEnlmuGrJXVbNuzT9qBBavbLwCsOGabYfZo0T0to5eqruptLy" crossorigin="anonymous"></script>
+  <script src="/javascripts/scripts.js"></script>
   </body>
 </html>

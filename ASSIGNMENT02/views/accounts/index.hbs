@@ -21,7 +21,8 @@
             <td>{{decimalNumber this.difference}}</td>
             <td>
                 {{buttonRemoverMaterials this}}
-                <a href="accounts/delete/{{this._id}}" class="btn btn-danger">delete</a>
+                <a href="accounts/delete/{{this._id}}" 
+                onclick="return comfirmDeletion()" class="btn btn-danger">delete</a>
             </td>
         </tr>
         {{/each}}

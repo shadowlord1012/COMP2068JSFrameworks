@@ -21,7 +21,8 @@
             <td>
                 <a href="/deliveries/edit/{{this._id}}" class="btn btn-info">Update</a>
                 &nbsp;
-                <a href="/deliveries/delete/{{this._id}}" class="btn btn-danger">Delete</a>
+                <a href="/deliveries/delete/{{this._id}}" 
+                onclick="return comfirmDeletion()" class="btn btn-danger">Delete</a>
             </td>
         </tr>
         {{/each}}

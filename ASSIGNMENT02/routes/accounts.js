@@ -4,9 +4,10 @@ var router = express.Router();
 const Project = require('../models/project');
 const Materials = require('../models/material');
 const Accounts = require('../models/accounting');
+const authenticationMiddleware = require('../extensions/authentication');
 
 
-router.get("/", async (req,res,next) => {
+router.get("/",authenticationMiddleware, async (req,res,next) => {
 
     //gets all the project information and creates the accounts
     await Project.find()
@@ -80,7 +81,7 @@ router.get("/", async (req,res,next) => {
                     }
                 });
             });
-            return res.render("accounts/index", {title: "Accounts", accountData : accountInfo});            
+            return res.render("accounts/index", {title: "Accounts", accountData : accountInfo,user: req.user});            
         })
         .catch(err => {
             return res.status(500).json(err);

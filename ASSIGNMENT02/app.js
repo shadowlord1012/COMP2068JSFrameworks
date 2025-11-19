@@ -5,15 +5,16 @@ var cookieParser = require('cookie-parser');
 var logger = require('morgan');
 var mongoose = require('mongoose');
 var hbs = require('hbs');
-var passport = require('passport');
-var session = require('express-session');
 
 //Enviroment variables
-require("dotenv").config();
+var configs = require('./configs/global');
+
+//Passport Section
+var passport = require('passport');
+var session = require('express-session');
+var githubStrat = require('passport-github2').Strategy;
 
 //import the required models for passport to use
-var Acc = require('./models/accounting');
-var Proj = require('./models/project');
 var User = require('./models/user');
 
 
@@ -28,7 +29,7 @@ var delieveryRouter = require('./routes/deliveries');
 var app = express();
 
 mongoose
-.connect(process.env.CONNECTION_STRING_MONGODB)
+.connect(configs.ConnectionStrings.MongoDB)
   .then(() => console.log("Connected To MongoDB!"))
   .catch((err) => console.error("Connection Error:",err));
 
@@ -96,6 +97,41 @@ app.use(passport.session());
 
 //Passport stragtegies
 passport.use(User.createStrategy());
+
+//Github strategy
+passport.use(new githubStrat (
+  //options object
+  {
+    clientID: configs.Authentication.GitHub.ClientID,
+    clientSecret: configs.Authentication.GitHub.ClientSecret,
+    callbackURL: configs.Authentication.GitHub.CallbackURL,
+  },
+  //callback function
+  //profile is github profile
+  async (accessToken, refreshToken, profile, done) => {
+    //search use by ID
+    const user = await User.findOne({oauthId: profile.id});
+    //user exists (return user)
+    if (user) {
+      return done(null,user);
+    }
+    else {
+      const newUser = new User({
+        username: profile.username,
+        oauthId: profile.id,
+        oauthProvider: 'GitHub',
+        created: Date.now()
+      })
+
+      //add to DB
+      const savedUser = await newUser.save();
+      //return
+      return done(null,savedUser);
+    }
+  }
+));
+
+
 passport.serializeUser(User.serializeUser());
 passport.deserializeUser(User.deserializeUser());
 

@@ -8,7 +8,9 @@ const plm = require('passport-local-mongoose');
 const dataSchemaObj = {
     username: { type: String },
     password: { type: String },
-    accesslevel: { type: String },
+    oauthId: {type: String},
+    oauthProvider: {type:String},
+    created: {type:Date, default:Date.now},
 }
 
 //converts it to a mongoose schema
