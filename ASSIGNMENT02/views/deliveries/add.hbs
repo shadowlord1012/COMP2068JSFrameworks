@@ -1,7 +1,7 @@
 <h1>{{title}}</h1>
 <form method="POST">
     <fieldset>
-        <div>
+        <div class="form-row">
             <div>
                 <label for="projectId">Project ID</label>
                 <select name="projectId" id="projectId">
@@ -10,16 +10,17 @@
                     {{/each}}
                 </select>
             </div>
-            <div>
+            <div class="col-md-4 mb-3">
                 <label for="deliveryId">Delivery ID Number</label>
                 <input type="deliveryId" class="form-control" name="deliveryId" id="deliveryId">
             </div>
-            <div>
+            <div class="col-md-4 mb-3">
                 <label for="expectedDate">Expected Date</label>
                 <input type="date" name="expectedDate" id="expectedDate" required>
             </div>
         </div>
-        <button class="btn btn-primary">Save</button>
+        <button class="offset-1 btn btn-primary">Save</button>
+        &nbsp;
         <a href="/deliveries" class="btn btn-info">Back</a>
     </fieldset>
 </form>

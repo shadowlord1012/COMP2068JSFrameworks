@@ -15,14 +15,15 @@
             <td>{{this.projectId}}</td>
             <td>{{this.projectOwnerAddress.0.city}}</td>
             <td>
-                <a href="/deliveries/details/{{this.deliveryId}}" class="btn btn-secondary">Details</a>
-                <a href="/deliveries/map/{{this.projectOwnerAddress.0.city}}" class="btn btn-info">Map Location</a>
+                <a href="/deliveries/details/{{this.deliveryId}}" class="btn btn-secondary btn-sm">Details</a>
+                &nbsp;
+                <a href="/deliveries/map/{{this.projectOwnerAddress.0.city}}" class="btn btn-info btn-sm">Map Location</a>
             </td>
             <td>
-                <a href="/deliveries/edit/{{this._id}}" class="btn btn-info">Update</a>
+                <a href="/deliveries/edit/{{this._id}}" class="btn btn-info btn-sm">Update</a>
                 &nbsp;
                 <a href="/deliveries/delete/{{this._id}}" 
-                onclick="return comfirmDeletion()" class="btn btn-danger">Delete</a>
+                onclick="return comfirmDeletion()" class="btn btn-danger btn-sm">Delete</a>
             </td>
         </tr>
         {{/each}}
